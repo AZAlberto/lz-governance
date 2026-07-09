@@ -1,0 +1,30 @@
+# Example Terraform Variables File for Policy Deployment
+# Copy this file to terraform.tfvars and adjust values as needed
+
+# Management Group ID where the policy definition will be created
+management_group_id = "/providers/Microsoft.Management/managementGroups/lz-root"
+
+# Landing Zone Management Group ID where the policy will be assigned
+landing_zone_mg_id = "/providers/Microsoft.Management/managementGroups/lz-landingzones"
+
+# Policy display name
+policy_display_name = "Deny Virtual Machine Creation"
+
+# Policy description
+policy_description = "Prevents the creation of Virtual Machines in the Landing Zone to enforce cost control and governance"
+
+# Enable or disable the policy
+policy_enabled = true
+
+# Enforcement mode (Audit for testing, Deny for production)
+enforcement_mode = "Deny"
+
+# Log Analytics Workspace ID for compliance monitoring
+# Format: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}
+log_analytics_workspace_id = "/subscriptions/YOUR_SUBSCRIPTION_ID/resourceGroups/rg-platform-management/providers/Microsoft.OperationalInsights/workspaces/law-central-lz-gov"
+
+# Exemption configuration
+exclusion_tags = {
+  "PolicyExemption" = "Approved"
+  "Environment"     = "Production"
+}
